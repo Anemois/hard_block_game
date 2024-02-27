@@ -1,0 +1,344 @@
+[gd_scene load_steps=12 format=3 uid="uid://bq6jye4vm0fdj"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_aghwt"]
+[ext_resource type="Texture2D" uid="uid://53owit4n4o7u" path="res://Joe.png" id="2_bc1kd"]
+[ext_resource type="Script" path="res://Player2.gd" id="3_hdj6p"]
+[ext_resource type="Texture2D" uid="uid://c3n4pkev5xrnd" path="res://Moe.png" id="4_gvnqc"]
+[ext_resource type="Texture2D" uid="uid://cd2b0lhkvxqml" path="res://Spawn.png" id="5_kqwoj"]
+[ext_resource type="Texture2D" uid="uid://bbtcqqui66g3v" path="res://ExitClosed.png" id="6_wasfn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qqkpu"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcnpg"]
+size = Vector2(100, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfime"]
+size = Vector2(39, 43)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lly1k"]
+size = Vector2(1152, 87)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ur3se"]
+
+[node name="lv_2" type="Node2D"]
+position = Vector2(11, 366)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(64, 501)
+script = ExtResource("1_aghwt")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_bc1kd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_qqkpu")
+
+[node name="Player2" type="CharacterBody2D" parent="."]
+position = Vector2(2267, 557)
+script = ExtResource("3_hdj6p")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player2"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_gvnqc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
+shape = SubResource("RectangleShape2D_qqkpu")
+
+[node name="Spawn" type="Node2D" parent="."]
+position = Vector2(86, 593)
+scale = Vector2(1, -2)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Spawn"]
+texture = ExtResource("5_kqwoj")
+
+[node name="Exit" type="Node2D" parent="."]
+position = Vector2(1840, 588)
+scale = Vector2(1, -2)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Exit"]
+texture = ExtResource("6_wasfn")
+
+[node name="ExitArea" type="Area2D" parent="Exit"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit/ExitArea"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_fcnpg")
+
+[node name="ExitOrb" type="Node2D" parent="."]
+position = Vector2(1759, -211)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="ExitOrb"]
+offset_right = 39.0
+offset_bottom = 43.0
+color = Color(0.701961, 0.643137, 0.929412, 1)
+
+[node name="ExitOrbArea" type="Area2D" parent="ExitOrb"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitOrb/ExitOrbArea"]
+position = Vector2(19.5, 21.5)
+shape = SubResource("RectangleShape2D_xfime")
+
+[node name="Grounds" type="Node2D" parent="."]
+
+[node name="Ground2" type="StaticBody2D" parent="Grounds"]
+position = Vector2(413, 13.0001)
+scale = Vector2(0.137185, -3.85345)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Grounds/Ground2"]
+offset_right = 1152.0
+offset_bottom = 87.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grounds/Ground2"]
+position = Vector2(576, 43.5)
+shape = SubResource("RectangleShape2D_lly1k")
+
+[node name="Ground6" type="StaticBody2D" parent="Grounds"]
+position = Vector2(158, 591)
+scale = Vector2(0.0409748, -9.46065)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Grounds/Ground6"]
+offset_right = 1152.0
+offset_bottom = 87.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grounds/Ground6"]
+position = Vector2(576, 43.5)
+shape = SubResource("RectangleShape2D_lly1k")
+
+[node name="Ground7" type="StaticBody2D" parent="Grounds"]
+position = Vector2(873, 455)
+scale = Vector2(0.00606717, -4.78381)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Grounds/Ground7"]
+offset_right = 1152.0
+offset_bottom = 87.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grounds/Ground7"]
+position = Vector2(576, 43.5)
+shape = SubResource("RectangleShape2D_lly1k")
+
+[node name="Ground3" type="StaticBody2D" parent="Grounds"]
+position = Vector2(276, -17.0001)
+scale = Vector2(0.375037, 0.384293)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Grounds/Ground3"]
+offset_right = 1152.0
+offset_bottom = 87.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grounds/Ground3"]
+position = Vector2(576, 43.5)
+shape = SubResource("RectangleShape2D_lly1k")
+
+[node name="Ground9" type="StaticBody2D" parent="Grounds"]
+position = Vector2(1072, 12.0002)
+scale = Vector2(0.137185, -4.53345)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Grounds/Ground9"]
+offset_right = 1152.0
+offset_bottom = 87.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grounds/Ground9"]
+position = Vector2(576, 43.5)
+shape = SubResource("RectangleShape2D_lly1k")
+
+[node name="Ground10" type="StaticBody2D" parent="Grounds"]
+position = Vector2(935, -18.0001)
+scale = Vector2(0.375037, 0.384293)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Grounds/Ground10"]
+offset_right = 1152.0
+offset_bottom = 87.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grounds/Ground10"]
+position = Vector2(576, 43.5)
+shape = SubResource("RectangleShape2D_lly1k")
+
+[node name="Ground11" type="StaticBody2D" parent="Grounds"]
+position = Vector2(1583, 12.0002)
+scale = Vector2(0.137185, -4.97345)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Grounds/Ground11"]
+offset_right = 1152.0
+offset_bottom = 87.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grounds/Ground11"]
+position = Vector2(576, 43.5)
+shape = SubResource("RectangleShape2D_lly1k")
+
+[node name="Ground12" type="StaticBody2D" parent="Grounds"]
+position = Vector2(1446, -18.0001)
+scale = Vector2(0.256166, 0.349952)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Grounds/Ground12"]
+offset_right = 1152.0
+offset_bottom = 87.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grounds/Ground12"]
+position = Vector2(576, 43.5)
+shape = SubResource("RectangleShape2D_lly1k")
+
+[node name="Ground8" type="StaticBody2D" parent="Grounds"]
+position = Vector2(1789, 586)
+scale = Vector2(0.437176, 0.390241)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Grounds/Ground8"]
+offset_right = 1152.0
+offset_bottom = 87.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grounds/Ground8"]
+position = Vector2(576, 43.5)
+shape = SubResource("RectangleShape2D_lly1k")
+
+[node name="Ground" type="StaticBody2D" parent="Grounds"]
+position = Vector2(-13, 591)
+scale = Vector2(0.189034, 0.342301)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Grounds/Ground"]
+offset_right = 1152.0
+offset_bottom = 87.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grounds/Ground"]
+position = Vector2(576, 43.5)
+shape = SubResource("RectangleShape2D_lly1k")
+
+[node name="DeathBoxes" type="Node2D" parent="."]
+
+[node name="DeathBox" type="Area2D" parent="DeathBoxes"]
+process_mode = 3
+position = Vector2(925, 738)
+scale = Vector2(120.496, -8.3171)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathBoxes/DeathBox"]
+position = Vector2(9.53674e-07, 0)
+shape = SubResource("RectangleShape2D_ur3se")
+
+[node name="ColorRect" type="ColorRect" parent="DeathBoxes/DeathBox"]
+offset_left = -10.0
+offset_top = -11.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0.705882, 0, 0.188235, 1)
+
+[node name="DeathBox6" type="Area2D" parent="DeathBoxes"]
+process_mode = 3
+position = Vector2(868, 237)
+scale = Vector2(-0.537397, -19.8205)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathBoxes/DeathBox6"]
+position = Vector2(9.53674e-07, 0)
+shape = SubResource("RectangleShape2D_ur3se")
+
+[node name="ColorRect" type="ColorRect" parent="DeathBoxes/DeathBox6"]
+offset_left = -10.0
+offset_top = -11.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0.705882, 0, 0.188235, 1)
+
+[node name="DeathBox4" type="Area2D" parent="DeathBoxes"]
+process_mode = 3
+position = Vector2(933, -468)
+scale = Vector2(122.793, -15.1991)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathBoxes/DeathBox4"]
+position = Vector2(9.53674e-07, 0)
+shape = SubResource("RectangleShape2D_ur3se")
+
+[node name="ColorRect" type="ColorRect" parent="DeathBoxes/DeathBox4"]
+offset_left = -10.0
+offset_top = -11.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0.705882, 0, 0.188235, 1)
+
+[node name="DeathBox5" type="Area2D" parent="DeathBoxes"]
+process_mode = 3
+position = Vector2(1961, 68)
+scale = Vector2(6.31264, -47.081)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathBoxes/DeathBox5"]
+position = Vector2(9.53674e-07, 0)
+shape = SubResource("RectangleShape2D_ur3se")
+
+[node name="ColorRect" type="ColorRect" parent="DeathBoxes/DeathBox5"]
+offset_left = -10.0
+offset_top = -11.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0.705882, 0, 0.188235, 1)
+
+[node name="DeathBox7" type="Area2D" parent="DeathBoxes"]
+process_mode = 3
+position = Vector2(-42, 73)
+scale = Vector2(6.31264, -47.081)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathBoxes/DeathBox7"]
+position = Vector2(9.53674e-07, 0)
+shape = SubResource("RectangleShape2D_ur3se")
+
+[node name="ColorRect" type="ColorRect" parent="DeathBoxes/DeathBox7"]
+offset_left = -10.0
+offset_top = -11.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0.705882, 0, 0.188235, 1)
+
+[node name="DeathBox2" type="Area2D" parent="DeathBoxes"]
+process_mode = 3
+position = Vector2(-158, 99.0001)
+rotation = 3.14159
+scale = Vector2(11.5207, 76.7195)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathBoxes/DeathBox2"]
+position = Vector2(9.53674e-07, 0)
+shape = SubResource("RectangleShape2D_ur3se")
+
+[node name="DeathBox3" type="Area2D" parent="DeathBoxes"]
+process_mode = 3
+position = Vector2(2083, 99)
+rotation = 3.14159
+scale = Vector2(11.5207, 76.7195)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathBoxes/DeathBox3"]
+position = Vector2(9.53674e-07, 0)
+shape = SubResource("RectangleShape2D_ur3se")
+
+[connection signal="body_entered" from="Exit/ExitArea" to="Player" method="_on_exit_area_body_entered" flags=18]
+[connection signal="body_entered" from="ExitOrb/ExitOrbArea" to="Player" method="_on_exit_orb_area_body_entered" flags=18]
+[connection signal="body_entered" from="DeathBoxes/DeathBox" to="Player" method="_on_death_box_body_entered" flags=18]
+[connection signal="body_entered" from="DeathBoxes/DeathBox" to="Player2" method="_on_death_box_body_entered" flags=18]
+[connection signal="body_entered" from="DeathBoxes/DeathBox6" to="Player" method="_on_death_box_body_entered" flags=18]
+[connection signal="body_entered" from="DeathBoxes/DeathBox6" to="Player2" method="_on_death_box_body_entered" flags=18]
+[connection signal="body_entered" from="DeathBoxes/DeathBox4" to="Player" method="_on_death_box_body_entered" flags=18]
+[connection signal="body_entered" from="DeathBoxes/DeathBox4" to="Player2" method="_on_death_box_body_entered" flags=18]
+[connection signal="body_entered" from="DeathBoxes/DeathBox5" to="Player" method="_on_death_box_body_entered" flags=18]
+[connection signal="body_entered" from="DeathBoxes/DeathBox5" to="Player2" method="_on_death_box_body_entered" flags=18]
+[connection signal="body_entered" from="DeathBoxes/DeathBox7" to="Player" method="_on_death_box_body_entered" flags=18]
+[connection signal="body_entered" from="DeathBoxes/DeathBox7" to="Player2" method="_on_death_box_body_entered" flags=18]
+[connection signal="body_entered" from="DeathBoxes/DeathBox2" to="Player" method="_on_death_box_body_entered" flags=18]
+[connection signal="body_entered" from="DeathBoxes/DeathBox2" to="Player2" method="_on_death_box_body_entered" flags=18]
+[connection signal="body_entered" from="DeathBoxes/DeathBox3" to="Player" method="_on_death_box_body_entered" flags=18]
+[connection signal="body_entered" from="DeathBoxes/DeathBox3" to="Player2" method="_on_death_box_body_entered" flags=18]
