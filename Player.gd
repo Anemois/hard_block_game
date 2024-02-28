@@ -16,6 +16,8 @@ var PTeleport: bool = false
 var PDash: bool = false
 
 var NEXTLV: bool = false
+var ONLEFTWALL: bool = false
+var ONRIGHTWALL: bool = false
 
 func _dash():
 	if(PDash && DASHCNT < 1):
@@ -75,11 +77,19 @@ func _set_key_presses_off():
 	if(Input.is_action_pressed("Dash")):
 		PDash = false
 
+func _check_on_wall():
+	var lray = get_node("LeftRayCasts")
+	ONLEFTWALL = (lray.get_child(0).is_colliding() || lray.get_child(1).is_colliding() || lray.get_child(2).is_colliding())
+	var rray = get_node("RightRayCasts")
+	ONRIGHTWALL = (rray.get_child(0).is_colliding() || rray.get_child(1).is_colliding() || rray.get_child(2).is_colliding())
+
+
 func _ready():
 	position = get_parent().get_node("Spawn").get_position()
 	
 func _process(delta):
 	_set_key_presses_on()
+	_check_on_wall()
 
 func _physics_process(delta):
 	#print(velocity.y)
@@ -94,9 +104,11 @@ func _physics_process(delta):
 	if(velocity.y < JUMP_POWER):
 		#print(velocity.y)
 		velocity.y += 200
-	if(is_on_wall() && !PJump):
+		
+	if(((PLeft && ONLEFTWALL) || (PRight && ONRIGHTWALL)) && !PJump):
 		JUMPCNT = 0
 		velocity.y = 0
+		
 	if(is_on_floor()):
 		JUMPCNT = 0
 		DASHCNT = 0
@@ -129,6 +141,9 @@ func _on_death_box_body_entered(body):
 	get_parent().get_node("Exit").get_child(0).texture = load("res://ExitClosed.png")
 	NEXTLV = false
 	get_parent().get_node("ExitOrb").get_child(0).visible = true
+	
+	for ExOrb in get_parent().get_node("DashResets").get_children():
+		ExOrb.visible = true
 
 func _on_exit_orb_area_body_entered(body):
 	get_parent().get_node("Exit").get_child(0).texture = load("res://ExitOpen.png")
@@ -138,4 +153,12 @@ func _on_exit_orb_area_body_entered(body):
 func _on_exit_area_body_entered(body):
 	if(NEXTLV):
 		if(get_parent().name == "lv_1"):
-			get_tree().change_scene_to_file("res://lv_2.tscn")
+			get_tree().change_scene_to_file("res://lv_6.tscn")
+		elif(get_parent().name == "lv_2"):
+			get_tree().change_scene_to_file("res://lv_3.tscn")
+		elif(get_parent().name == "lv_3"):
+			get_tree().change_scene_to_file("res://lv_4.tscn")
+		elif(get_parent().name == "lv_4"):
+			get_tree().change_scene_to_file("res://lv_5.tscn")
+		elif(get_parent().name == "lv_5"):
+			get_tree().change_scene_to_file("res://lv_6.tscn")

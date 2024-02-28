@@ -36,6 +36,44 @@ texture = ExtResource("1_y7mej")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_r338v")
 
+[node name="LeftRayCasts" type="Node2D" parent="Player"]
+
+[node name="LeftTop" type="RayCast2D" parent="Player/LeftRayCasts"]
+position = Vector2(0, -24)
+scale = Vector2(1, 0.20002)
+target_position = Vector2(-26, 0)
+collision_mask = 8
+
+[node name="LeftMid" type="RayCast2D" parent="Player/LeftRayCasts"]
+scale = Vector2(1, 0.20002)
+target_position = Vector2(-26, 0)
+collision_mask = 8
+
+[node name="LeftBot" type="RayCast2D" parent="Player/LeftRayCasts"]
+position = Vector2(0, 24)
+scale = Vector2(1, 0.20002)
+target_position = Vector2(-26, 0)
+collision_mask = 8
+
+[node name="RightRayCasts" type="Node2D" parent="Player"]
+
+[node name="RightTop" type="RayCast2D" parent="Player/RightRayCasts"]
+position = Vector2(0, -24)
+scale = Vector2(1, 0.20002)
+target_position = Vector2(26, 0)
+collision_mask = 8
+
+[node name="RightMid" type="RayCast2D" parent="Player/RightRayCasts"]
+scale = Vector2(1, 0.20002)
+target_position = Vector2(26, 0)
+collision_mask = 8
+
+[node name="RightBot" type="RayCast2D" parent="Player/RightRayCasts"]
+position = Vector2(0, 24)
+scale = Vector2(1, 0.20002)
+target_position = Vector2(26, 0)
+collision_mask = 8
+
 [node name="Player2" type="CharacterBody2D" parent="."]
 position = Vector2(101, -475)
 script = ExtResource("3_5jfg7")
@@ -90,6 +128,7 @@ shape = SubResource("RectangleShape2D_l5t27")
 [node name="Ground2" type="StaticBody2D" parent="Grounds"]
 position = Vector2(299, 500)
 scale = Vector2(0.271567, 0.336042)
+collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Grounds/Ground2"]
@@ -103,6 +142,7 @@ shape = SubResource("RectangleShape2D_xqxx3")
 [node name="Ground6" type="StaticBody2D" parent="Grounds"]
 position = Vector2(536, 271)
 scale = Vector2(0.0658366, 2.70199)
+collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Grounds/Ground6"]
@@ -116,6 +156,7 @@ shape = SubResource("RectangleShape2D_xqxx3")
 [node name="Ground7" type="StaticBody2D" parent="Grounds"]
 position = Vector2(-74, -377)
 scale = Vector2(1.78865, 0.442839)
+collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Grounds/Ground7"]
@@ -129,6 +170,7 @@ shape = SubResource("RectangleShape2D_xqxx3")
 [node name="Ground3" type="StaticBody2D" parent="Grounds"]
 position = Vector2(1218, 342)
 scale = Vector2(0.375448, 0.391798)
+collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Grounds/Ground3"]
@@ -142,6 +184,7 @@ shape = SubResource("RectangleShape2D_xqxx3")
 [node name="Ground8" type="StaticBody2D" parent="Grounds"]
 position = Vector2(1789, 586)
 scale = Vector2(0.437176, 0.390241)
+collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Grounds/Ground8"]
@@ -155,6 +198,7 @@ shape = SubResource("RectangleShape2D_xqxx3")
 [node name="Ground4" type="StaticBody2D" parent="Grounds"]
 position = Vector2(-67, 596)
 scale = Vector2(0.0722402, -10.7821)
+collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Grounds/Ground4"]
@@ -168,6 +212,7 @@ shape = SubResource("RectangleShape2D_xqxx3")
 [node name="Ground5" type="StaticBody2D" parent="Grounds"]
 position = Vector2(1891, 620)
 scale = Vector2(0.073648, -13.1034)
+collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Grounds/Ground5"]
@@ -181,6 +226,7 @@ shape = SubResource("RectangleShape2D_xqxx3")
 [node name="Ground" type="StaticBody2D" parent="Grounds"]
 position = Vector2(-13, 591)
 scale = Vector2(0.202631, 0.342301)
+collision_layer = 9
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Grounds/Ground"]
@@ -231,6 +277,8 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathBoxes/DeathBox3"]
 position = Vector2(9.53674e-07, 0)
 shape = SubResource("RectangleShape2D_rl7yd")
+
+[node name="DashResets" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="Exit/ExitArea" to="Player" method="_on_exit_area_body_entered"]
 [connection signal="body_entered" from="ExitOrb/ExitOrbArea" to="Player" method="_on_exit_orb_area_body_entered"]
