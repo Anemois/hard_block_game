@@ -18,11 +18,13 @@ var PDash: bool = false
 var NEXTLV: bool = false
 var ONLEFTWALL: bool = false
 var ONRIGHTWALL: bool = false
+var LAND: bool = true
 
 func _dash():
 	if(PDash && DASHCNT < 1):
 		DASHCNT = 1
 		var horz: bool = false
+		var vert: bool = false
 		if(PLeft && !PRight):
 			velocity.x = -DASHSPEED
 			velocity.y = 0
@@ -39,6 +41,7 @@ func _dash():
 					velocity.x -= 200
 				else:
 					velocity.x += 200
+			vert = true
 		elif(!PJump && PDown):
 			velocity.y = DASHSPEED-200
 			if(horz):
@@ -46,7 +49,10 @@ func _dash():
 					velocity.x -= 200
 				else:
 					velocity.x += 200
-					
+			vert = true
+		if(horz || vert):
+			$Sounds/DashWind.play()
+			
 func _set_key_presses_on():
 	if(Input.is_action_pressed("Jump")):
 		PJump = true
@@ -78,11 +84,8 @@ func _set_key_presses_off():
 		PDash = false
 
 func _check_on_wall():
-	var lray = get_node("LeftRayCasts")
-	ONLEFTWALL = (lray.get_child(0).is_colliding() || lray.get_child(1).is_colliding() || lray.get_child(2).is_colliding())
-	var rray = get_node("RightRayCasts")
-	ONRIGHTWALL = (rray.get_child(0).is_colliding() || rray.get_child(1).is_colliding() || rray.get_child(2).is_colliding())
-
+	ONLEFTWALL = ($LeftRayCasts/LeftTop.is_colliding() || $LeftRayCasts/LeftMid.is_colliding() || $LeftRayCasts/LeftBot.is_colliding())
+	ONRIGHTWALL = ($RightRayCasts/RightTop.is_colliding() || $RightRayCasts/RightMid.is_colliding() || $RightRayCasts/RightBot.is_colliding())
 
 func _ready():
 	position = get_parent().get_node("Spawn").get_position()
@@ -90,6 +93,9 @@ func _ready():
 func _process(delta):
 	_set_key_presses_on()
 	_check_on_wall()
+	if(is_on_floor()):
+		JUMPCNT = 0
+		DASHCNT = 0
 
 func _physics_process(delta):
 	#print(velocity.y)
@@ -108,11 +114,10 @@ func _physics_process(delta):
 	if(((PLeft && ONLEFTWALL) || (PRight && ONRIGHTWALL)) && !PJump):
 		JUMPCNT = 0
 		velocity.y = 0
-		
-	if(is_on_floor()):
-		JUMPCNT = 0
-		DASHCNT = 0
+
 	if(PJump):
+		if(JUMPCNT == 0):
+			$Sounds/Jump.play()
 		if(JUMPCNT < JUMPCNTMX):
 			velocity.y = min(JUMP_POWER, velocity.y)
 			JUMPCNT += 1
@@ -135,30 +140,39 @@ func _physics_process(delta):
 
 
 func _on_death_box_body_entered(body):
-	#print("hi")
-	position = get_parent().get_node("Spawn").get_position()
-	velocity = Vector2(0, 0)
-	get_parent().get_node("Exit").get_child(0).texture = load("res://ExitClosed.png")
-	NEXTLV = false
-	get_parent().get_node("ExitOrb").get_child(0).visible = true
-	
-	for ExOrb in get_parent().get_node("DashResets").get_children():
-		ExOrb.visible = true
+	if(body.name == "Player"):
+		print(position)
+		$Sounds/LavaDeath.play()
+		position = get_parent().get_node("Spawn").get_position()
+		velocity = Vector2(0, 0)
+		get_parent().get_node("Exit").get_child(0).texture = load("res://ExitClosed.png")
+		NEXTLV = false
+		get_parent().get_node("ExitOrb").get_child(0).visible = true
+		
+		for ExOrb in get_parent().get_node("DashResets").get_children():
+			ExOrb.visible = true
 
 func _on_exit_orb_area_body_entered(body):
-	get_parent().get_node("Exit").get_child(0).texture = load("res://ExitOpen.png")
-	get_parent().get_node("ExitOrb").get_child(0).visible = false
-	NEXTLV = true
+	if(body.name == "Player"):
+		get_parent().get_node("Exit").get_child(0).texture = load("res://ExitOpen.png")
+		get_parent().get_node("ExitOrb").get_child(0).visible = false
+		NEXTLV = true
 
 func _on_exit_area_body_entered(body):
-	if(NEXTLV):
+	if(NEXTLV && body.name == "Player"):
 		if(get_parent().name == "lv_1"):
-			get_tree().change_scene_to_file("res://lv_6.tscn")
+			get_tree().change_scene_to_file("res://Levels//lv_2.tscn")
 		elif(get_parent().name == "lv_2"):
-			get_tree().change_scene_to_file("res://lv_3.tscn")
+			get_tree().change_scene_to_file("res://Levels//lv_3.tscn")
 		elif(get_parent().name == "lv_3"):
-			get_tree().change_scene_to_file("res://lv_4.tscn")
+			get_tree().change_scene_to_file("res://Levels//lv_4.tscn")
 		elif(get_parent().name == "lv_4"):
-			get_tree().change_scene_to_file("res://lv_5.tscn")
+			get_tree().change_scene_to_file("res://Levels//lv_5.tscn")
 		elif(get_parent().name == "lv_5"):
-			get_tree().change_scene_to_file("res://lv_6.tscn")
+			get_tree().change_scene_to_file("res://Levels//lv_6.tscn")
+		elif(get_parent().name == "lv_6"):
+			get_tree().change_scene_to_file("res://Levels//lv_7.tscn")
+		elif(get_parent().name == "lv_7"):
+			get_tree().change_scene_to_file("res://Levels//lv_8.tscn")
+		else:
+			get_tree().change_scene_to_file("res://Levels//youwin.tscn")

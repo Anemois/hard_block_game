@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dex4dnfw66io3"]
+
+[ext_resource type="Texture2D" uid="uid://m8dquosprp75" path="res://victory.png" id="1_p6o7v"]
+
+[node name="YOUWIN" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(964, 555)
+scale = Vector2(4.89848, 4.23282)
+texture = ExtResource("1_p6o7v")

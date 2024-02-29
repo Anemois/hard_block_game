@@ -1,11 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhiupvp3bbsb6"]
+[gd_scene load_steps=15 format=3 uid="uid://dhiupvp3bbsb6"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_ojddy"]
-[ext_resource type="Texture2D" uid="uid://53owit4n4o7u" path="res://Joe.png" id="1_y7mej"]
-[ext_resource type="Script" path="res://Player2.gd" id="3_5jfg7"]
-[ext_resource type="Texture2D" uid="uid://c3n4pkev5xrnd" path="res://Moe.png" id="3_o268h"]
-[ext_resource type="Texture2D" uid="uid://cd2b0lhkvxqml" path="res://Spawn.png" id="5_cm4cj"]
-[ext_resource type="Texture2D" uid="uid://bbtcqqui66g3v" path="res://ExitClosed.png" id="6_wxdv4"]
+[ext_resource type="Script" path="res://Player.gd" id="1_3ggqx"]
+[ext_resource type="Texture2D" uid="uid://53owit4n4o7u" path="res://Joe.png" id="2_cdgg3"]
+[ext_resource type="Script" path="res://Player2.gd" id="3_e1vud"]
+[ext_resource type="AudioStream" uid="uid://bid0vbl31qp8f" path="res://Audio/LavaBurn.wav" id="3_lf70l"]
+[ext_resource type="Texture2D" uid="uid://c3n4pkev5xrnd" path="res://Moe.png" id="4_nf7ux"]
+[ext_resource type="AudioStream" uid="uid://r30vqn8ewru0" path="res://Audio/Rock2.mp3" id="5_k30b6"]
+[ext_resource type="AudioStream" uid="uid://c2u6kjs0xxkys" path="res://Audio/DashWind.mp3" id="5_vxan0"]
+[ext_resource type="Texture2D" uid="uid://cd2b0lhkvxqml" path="res://Spawn.png" id="5_yj42m"]
+[ext_resource type="Texture2D" uid="uid://bbtcqqui66g3v" path="res://ExitClosed.png" id="6_r5voo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r338v"]
 size = Vector2(50, 50)
@@ -25,13 +28,13 @@ size = Vector2(1152, 87)
 position = Vector2(11, 366)
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(64, 501)
-script = ExtResource("1_ojddy")
+position = Vector2(74, 519)
+script = ExtResource("1_3ggqx")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_y7mej")
+texture = ExtResource("2_cdgg3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_r338v")
@@ -74,14 +77,27 @@ scale = Vector2(1, 0.20002)
 target_position = Vector2(26, 0)
 collision_mask = 8
 
+[node name="Sounds" type="Node2D" parent="Player"]
+
+[node name="LavaDeath" type="AudioStreamPlayer2D" parent="Player/Sounds"]
+stream = ExtResource("3_lf70l")
+
+[node name="DashWind" type="AudioStreamPlayer2D" parent="Player/Sounds"]
+stream = ExtResource("5_vxan0")
+volume_db = -20.0
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="Player/Sounds"]
+stream = ExtResource("5_k30b6")
+pitch_scale = 2.0
+
 [node name="Player2" type="CharacterBody2D" parent="."]
 position = Vector2(101, -475)
-script = ExtResource("3_5jfg7")
+script = ExtResource("3_e1vud")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Player2"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_o268h")
+texture = ExtResource("4_nf7ux")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
 shape = SubResource("RectangleShape2D_r338v")
@@ -92,7 +108,7 @@ scale = Vector2(1, -2)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Spawn"]
-texture = ExtResource("5_cm4cj")
+texture = ExtResource("5_yj42m")
 
 [node name="Exit" type="Node2D" parent="."]
 position = Vector2(1840, 588)
@@ -100,7 +116,7 @@ scale = Vector2(1, -2)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Exit"]
-texture = ExtResource("6_wxdv4")
+texture = ExtResource("6_r5voo")
 
 [node name="ExitArea" type="Area2D" parent="Exit"]
 
@@ -258,7 +274,7 @@ color = Color(0.705882, 0, 0.188235, 1)
 
 [node name="DeathBox2" type="Area2D" parent="DeathBoxes"]
 process_mode = 3
-position = Vector2(-158, 99.0001)
+position = Vector2(-157, 134)
 rotation = 3.14159
 scale = Vector2(11.5207, 76.7195)
 metadata/_edit_group_ = true
