@@ -1,13 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://bfl6qpdeqak0q"]
+[gd_scene load_steps=20 format=3 uid="uid://rdynwjpo8ai7"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_snnji"]
-[ext_resource type="Texture2D" uid="uid://53owit4n4o7u" path="res://Joe.png" id="2_sm4jp"]
-[ext_resource type="AudioStream" uid="uid://bid0vbl31qp8f" path="res://Audio/LavaBurn.wav" id="3_yn5g6"]
-[ext_resource type="AudioStream" uid="uid://c2u6kjs0xxkys" path="res://Audio/DashWind.mp3" id="4_oxw4e"]
-[ext_resource type="Texture2D" uid="uid://cd2b0lhkvxqml" path="res://Spawn.png" id="5_rfkg8"]
-[ext_resource type="AudioStream" uid="uid://r30vqn8ewru0" path="res://Audio/Rock2.mp3" id="5_xfgtk"]
-[ext_resource type="Texture2D" uid="uid://bbtcqqui66g3v" path="res://ExitClosed.png" id="6_p6unm"]
-[ext_resource type="Script" path="res://DashReset.gd" id="10_8onjn"]
+[ext_resource type="Script" path="res://Player.gd" id="1_2x0bi"]
+[ext_resource type="Texture2D" uid="uid://53owit4n4o7u" path="res://Joe.png" id="2_787r8"]
+[ext_resource type="AudioStream" uid="uid://bid0vbl31qp8f" path="res://Audio/LavaBurn.wav" id="3_0vt3e"]
+[ext_resource type="AudioStream" uid="uid://c2u6kjs0xxkys" path="res://Audio/DashWind.mp3" id="4_masdg"]
+[ext_resource type="AudioStream" uid="uid://r30vqn8ewru0" path="res://Audio/Rock2.mp3" id="5_fqshw"]
+[ext_resource type="Texture2D" uid="uid://cd2b0lhkvxqml" path="res://Spawn.png" id="8_g1nh3"]
+[ext_resource type="Texture2D" uid="uid://bbtcqqui66g3v" path="res://ExitClosed.png" id="9_hcf5x"]
+[ext_resource type="Script" path="res://DashReset.gd" id="10_usfrw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qqkpu"]
 size = Vector2(50, 50)
@@ -24,29 +24,35 @@ size = Vector2(1152, 87)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pou7w"]
 size = Vector2(20, 21.0616)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gvmn"]
+size = Vector2(39.9899, 39.962)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ma2p5"]
 size = Vector2(20, 20.9875)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tubum"]
 size = Vector2(20, 21.0023)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ky3sv"]
+size = Vector2(20, 21.0236)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur3se"]
 size = Vector2(20, 20.9426)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3wcal"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgrht"]
 size = Vector2(40, 40)
 
-[node name="lv_2" type="Node2D"]
+[node name="lv_9" type="Node2D"]
 position = Vector2(11, 366)
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(48, 592)
-script = ExtResource("1_snnji")
+position = Vector2(63, -330)
+script = ExtResource("1_2x0bi")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_sm4jp")
+texture = ExtResource("2_787r8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_qqkpu")
@@ -92,25 +98,24 @@ collision_mask = 8
 [node name="Sounds" type="Node2D" parent="Player"]
 
 [node name="LavaDeath" type="AudioStreamPlayer2D" parent="Player/Sounds"]
-stream = ExtResource("3_yn5g6")
-volume_db = 5.0
+stream = ExtResource("3_0vt3e")
 
 [node name="DashWind" type="AudioStreamPlayer2D" parent="Player/Sounds"]
-stream = ExtResource("4_oxw4e")
+stream = ExtResource("4_masdg")
 volume_db = -20.0
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="Player/Sounds"]
-stream = ExtResource("5_xfgtk")
+stream = ExtResource("5_fqshw")
 pitch_scale = 2.0
 
 [node name="Spawn" type="Node2D" parent="."]
 z_index = 10
-position = Vector2(51, 628)
+position = Vector2(66, -294)
 scale = Vector2(1, -2)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Spawn"]
-texture = ExtResource("5_rfkg8")
+texture = ExtResource("8_g1nh3")
 
 [node name="Exit" type="Node2D" parent="."]
 z_index = 10
@@ -119,7 +124,7 @@ scale = Vector2(1, -2)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Exit"]
-texture = ExtResource("6_p6unm")
+texture = ExtResource("9_hcf5x")
 
 [node name="ExitArea" type="Area2D" parent="Exit"]
 
@@ -128,7 +133,7 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_fcnpg")
 
 [node name="ExitOrb" type="Node2D" parent="."]
-position = Vector2(1214, -75)
+position = Vector2(59, 196)
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="ExitOrb"]
@@ -144,23 +149,23 @@ shape = SubResource("RectangleShape2D_xfime")
 
 [node name="Grounds" type="Node2D" parent="."]
 
-[node name="Ground9" type="StaticBody2D" parent="Grounds"]
-position = Vector2(2352, 587)
-scale = Vector2(-0.496793, 0.390241)
+[node name="Ground8" type="StaticBody2D" parent="Grounds"]
+position = Vector2(1790, 591)
+scale = Vector2(0.437176, 0.390241)
 collision_layer = 9
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="Grounds/Ground9"]
+[node name="ColorRect" type="ColorRect" parent="Grounds/Ground8"]
 offset_right = 1152.0
 offset_bottom = 87.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Grounds/Ground9"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grounds/Ground8"]
 position = Vector2(576, 43.5)
 shape = SubResource("RectangleShape2D_lly1k")
 
 [node name="Ground2" type="StaticBody2D" parent="Grounds"]
 z_index = -2
-position = Vector2(-263, 627)
+position = Vector2(-22, -294)
 scale = Vector2(0.322451, 0.64859)
 collision_layer = 9
 metadata/_edit_group_ = true
@@ -170,6 +175,36 @@ offset_right = 1152.0
 offset_bottom = 87.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grounds/Ground2"]
+position = Vector2(576, 43.5)
+shape = SubResource("RectangleShape2D_lly1k")
+
+[node name="Ground3" type="StaticBody2D" parent="Grounds"]
+z_index = -2
+position = Vector2(841, -605)
+scale = Vector2(0.0302955, 5.66644)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Grounds/Ground3"]
+offset_right = 1152.0
+offset_bottom = 87.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grounds/Ground3"]
+position = Vector2(576, 43.5)
+shape = SubResource("RectangleShape2D_lly1k")
+
+[node name="Ground4" type="StaticBody2D" parent="Grounds"]
+z_index = -2
+position = Vector2(841, -605)
+scale = Vector2(0.0302955, 5.66644)
+collision_layer = 9
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Grounds/Ground4"]
+offset_right = 1152.0
+offset_bottom = 87.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grounds/Ground4"]
 position = Vector2(576, 43.5)
 shape = SubResource("RectangleShape2D_lly1k")
 
@@ -191,9 +226,24 @@ color = Color(0.705882, 0, 0.188235, 1)
 position = Vector2(0, -0.530777)
 shape = SubResource("RectangleShape2D_pou7w")
 
+[node name="DeathBox30" type="Area2D" parent="DeathBoxes"]
+position = Vector2(-19, -42)
+scale = Vector2(11.7587, -1.17189)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="DeathBoxes/DeathBox30"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.99974, 0.999014)
+color = Color(0.705882, 0, 0.188235, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathBoxes/DeathBox30"]
+position = Vector2(19.995, 19.981)
+shape = SubResource("RectangleShape2D_2gvmn")
+
 [node name="DeathBox4" type="Area2D" parent="DeathBoxes"]
 position = Vector2(933, -468)
-scale = Vector2(-129.228, -11.633)
+scale = Vector2(-129.228, -9.67297)
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="DeathBoxes/DeathBox4"]
@@ -225,9 +275,8 @@ position = Vector2(0, -0.501158)
 shape = SubResource("RectangleShape2D_tubum")
 
 [node name="DeathBox7" type="Area2D" parent="DeathBoxes"]
-z_index = -1
-position = Vector2(1334, 479)
-scale = Vector2(6.08101, -47.5968)
+position = Vector2(-42, 73)
+scale = Vector2(5.12474, -61.1342)
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="DeathBoxes/DeathBox7"]
@@ -238,25 +287,8 @@ offset_bottom = 10.0
 color = Color(0.705882, 0, 0.188235, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathBoxes/DeathBox7"]
-position = Vector2(0, -0.501158)
-shape = SubResource("RectangleShape2D_tubum")
-
-[node name="DeathBox6" type="Area2D" parent="DeathBoxes"]
-z_index = -1
-position = Vector2(-70, 68)
-scale = Vector2(6.36101, -55.1568)
-metadata/_edit_group_ = true
-
-[node name="ColorRect" type="ColorRect" parent="DeathBoxes/DeathBox6"]
-offset_left = -10.0
-offset_top = -11.0
-offset_right = 10.0
-offset_bottom = 10.0
-color = Color(0.705882, 0, 0.188235, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathBoxes/DeathBox6"]
-position = Vector2(0, -0.501158)
-shape = SubResource("RectangleShape2D_tubum")
+position = Vector2(0, -0.511777)
+shape = SubResource("RectangleShape2D_ky3sv")
 
 [node name="DeathBox2" type="Area2D" parent="DeathBoxes"]
 position = Vector2(-158, 99.0001)
@@ -281,8 +313,8 @@ shape = SubResource("RectangleShape2D_ur3se")
 [node name="DashResets" type="Node2D" parent="."]
 
 [node name="DashReset" type="Area2D" parent="DashResets"]
-position = Vector2(356, 566)
-script = ExtResource("10_8onjn")
+position = Vector2(415, 6)
+script = ExtResource("10_usfrw")
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="DashResets/DashReset"]
@@ -292,11 +324,11 @@ color = Color(1, 0.705882, 0.827451, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DashResets/DashReset"]
 position = Vector2(20, 20)
-shape = SubResource("RectangleShape2D_3wcal")
+shape = SubResource("RectangleShape2D_sgrht")
 
 [node name="DashReset2" type="Area2D" parent="DashResets"]
-position = Vector2(660, 333)
-script = ExtResource("10_8onjn")
+position = Vector2(1304, -256)
+script = ExtResource("10_usfrw")
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="DashResets/DashReset2"]
@@ -306,31 +338,16 @@ color = Color(1, 0.705882, 0.827451, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DashResets/DashReset2"]
 position = Vector2(20, 20)
-shape = SubResource("RectangleShape2D_3wcal")
-
-[node name="DashReset3" type="Area2D" parent="DashResets"]
-position = Vector2(948, 92)
-script = ExtResource("10_8onjn")
-metadata/_edit_group_ = true
-
-[node name="ColorRect" type="ColorRect" parent="DashResets/DashReset3"]
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(1, 0.705882, 0.827451, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DashResets/DashReset3"]
-position = Vector2(20, 20)
-shape = SubResource("RectangleShape2D_3wcal")
+shape = SubResource("RectangleShape2D_sgrht")
 
 [connection signal="body_entered" from="Exit/ExitArea" to="Player" method="_on_exit_area_body_entered" flags=18]
 [connection signal="body_entered" from="ExitOrb/ExitOrbArea" to="Player" method="_on_exit_orb_area_body_entered" flags=18]
 [connection signal="body_entered" from="DeathBoxes/DeathBox" to="Player" method="_on_death_box_body_entered" flags=18]
+[connection signal="body_entered" from="DeathBoxes/DeathBox30" to="Player" method="_on_death_box_body_entered" flags=18]
 [connection signal="body_entered" from="DeathBoxes/DeathBox4" to="Player" method="_on_death_box_body_entered" flags=18]
 [connection signal="body_entered" from="DeathBoxes/DeathBox5" to="Player" method="_on_death_box_body_entered" flags=18]
 [connection signal="body_entered" from="DeathBoxes/DeathBox7" to="Player" method="_on_death_box_body_entered" flags=18]
-[connection signal="body_entered" from="DeathBoxes/DeathBox6" to="Player" method="_on_death_box_body_entered" flags=18]
 [connection signal="body_entered" from="DeathBoxes/DeathBox2" to="Player" method="_on_death_box_body_entered" flags=18]
 [connection signal="body_entered" from="DeathBoxes/DeathBox3" to="Player" method="_on_death_box_body_entered" flags=18]
 [connection signal="body_entered" from="DashResets/DashReset" to="DashResets/DashReset" method="_on_body_entered" flags=18]
 [connection signal="body_entered" from="DashResets/DashReset2" to="DashResets/DashReset2" method="_on_body_entered" flags=18]
-[connection signal="body_entered" from="DashResets/DashReset3" to="DashResets/DashReset3" method="_on_body_entered" flags=18]

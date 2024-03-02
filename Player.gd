@@ -54,7 +54,7 @@ func _dash():
 			$Sounds/DashWind.play()
 			
 func _set_key_presses_on():
-	if(Input.is_action_pressed("Jump")):
+	if(Input.is_action_pressed("Jump") || Input.is_action_pressed("Teleport")):
 		PJump = true
 	if(Input.is_action_pressed("Left")):
 		PLeft = true
@@ -62,13 +62,13 @@ func _set_key_presses_on():
 		PRight = true
 	if(Input.is_action_pressed("Down")):
 		PDown = true
-	if(Input.is_action_pressed("Teleport")):
-		PTeleport = true
+	#if(Input.is_action_pressed("Teleport")):
+	#	PTeleport = true
 	if(Input.is_action_just_pressed("Dash")):
 		PDash = true
 
 func _set_key_presses_off():
-	if(Input.is_action_just_released("Jump")):
+	if(Input.is_action_just_released("Jump") || Input.is_action_just_released("Teleport")):
 		PJump = false
 		JUMPCNT = 10000
 		PJump = false
@@ -78,8 +78,8 @@ func _set_key_presses_off():
 		PRight = false
 	if(Input.is_action_just_released("Down")):
 		PDown = false
-	if(Input.is_action_just_released("Teleport")):
-		PTeleport = false
+	#if(Input.is_action_just_released("Teleport")):
+	#	PTeleport = false
 	if(Input.is_action_pressed("Dash")):
 		PDash = false
 
@@ -174,5 +174,7 @@ func _on_exit_area_body_entered(body):
 			get_tree().change_scene_to_file("res://Levels//lv_7.tscn")
 		elif(get_parent().name == "lv_7"):
 			get_tree().change_scene_to_file("res://Levels//lv_8.tscn")
+		elif(get_parent().name == "lv_8"):
+			get_tree().change_scene_to_file("res://Levels//lv_9.tscn")
 		else:
 			get_tree().change_scene_to_file("res://Levels//youwin.tscn")

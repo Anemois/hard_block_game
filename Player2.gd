@@ -119,9 +119,3 @@ func _physics_process(delta):
 	_set_key_presses_off()
 	move_and_slide()
 
-
-func _on_death_box_body_entered(body):
-	#print("hi")
-	#position = get_parent().get_node("Spawn").get_position()
-	position.x += 50
-	velocity = Vector2(0, 0)
